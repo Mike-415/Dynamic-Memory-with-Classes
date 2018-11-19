@@ -1,36 +1,41 @@
 //
 // Created by Michael Gonzalez on 11/17/18.
 //
-#include "MyString.h"
+#include "mystring.h"
 #include <cstring>
 #include <iostream>
 
 namespace cs_mystring{
-    MyString::MyString(){
+    mystring::mystring(){
         myString = new char[1];
         strcpy(myString, "");
 
     }
 
-    MyString::MyString(const char *inMyString) {
+    mystring::mystring(const char *inMyString) {
         myString = new char[strlen(inMyString) + 1];
         strcpy(myString, inMyString);
     }
 
-    MyString::~MyString() {
+    mystring::mystring(const mystring& otherString) {
+        myString = new char[strlen(otherString.myString) + 1];
+        strcpy(myString, otherString.myString);
+    }
+
+    mystring::~mystring() {
         delete [] myString;
     }
 
-    int MyString::length(){
+    int mystring::length() const{
         return strlen(myString);
     }
 
-    std::ostream& operator<<(std::ostream& leftOS, const MyString& rightOperand) {
+    std::ostream& operator<<(std::ostream& leftOS, const mystring& rightOperand) {
         leftOS << rightOperand.myString;
         return leftOS;
     }
 
-    MyString MyString::operator=(const MyString& right)
+    mystring mystring::operator=(const mystring& right)
     {
         if (this != &right){
             delete [] myString;
@@ -40,39 +45,39 @@ namespace cs_mystring{
         return *this;
     }
 
-    char MyString::operator[](int index) const
+    char mystring::operator[](int index) const
     {
         assert(index >= 0 && index < strlen(myString));
         return myString[index];
     }
 
-    char& MyString::operator[](int index)
+    char& mystring::operator[](int index)
     {
         assert(index >= 0 && index < strlen(myString));
         return myString[index];
     }
 
-    bool operator<(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator<(const mystring& leftOperand, const mystring& rightOperand){
         return  strcmp(leftOperand.myString, rightOperand.myString) < 0;
     }
 
-    bool operator>(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator>(const mystring& leftOperand, const mystring& rightOperand){
         return strcmp(leftOperand.myString, rightOperand.myString) > 0;
     }
 
-    bool operator<=(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator<=(const mystring& leftOperand, const mystring& rightOperand){
         return strcmp(leftOperand.myString, rightOperand.myString) <= 0;
     }
 
-    bool operator>=(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator>=(const mystring& leftOperand, const mystring& rightOperand){
         return strcmp(leftOperand.myString, rightOperand.myString) >= 0;
     }
 
-    bool operator!=(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator!=(const mystring& leftOperand, const mystring& rightOperand){
         return strcmp(leftOperand.myString, rightOperand.myString) != 0;
     }
 
-    bool operator==(const MyString& leftOperand, const MyString& rightOperand){
+    bool operator==(const mystring& leftOperand, const mystring& rightOperand){
         return strcmp(leftOperand.myString, rightOperand.myString) == 0;
 
     }
