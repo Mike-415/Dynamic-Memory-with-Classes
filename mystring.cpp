@@ -1,6 +1,16 @@
-//
-// Created by Michael Gonzalez on 11/17/18.
-//
+/*
+ Name:       Michael Gonzalez
+ Class:      cs110b
+ Instructor: Dave Harden
+ File:       mystring.cpp
+
+ Class Invariant:
+
+   The mystring class contains one data member: a char pointer named myString
+   This data member stores c-strings and it's used
+   in various operations such as relational operations.
+ */
+
 #include "mystring.h"
 #include <cstring>
 #include <iostream>
@@ -9,7 +19,6 @@ namespace cs_mystring{
     mystring::mystring(){
         myString = new char[1];
         strcpy(myString, "");
-
     }
 
     mystring::mystring(const char *inMyString) {
@@ -37,7 +46,7 @@ namespace cs_mystring{
 
     mystring mystring::operator=(const mystring& right)
     {
-        if (this != &right){
+        if ( this != &right ) {
             delete [] myString;
             myString = new char[strlen(right.myString) + 1];
             strcpy(myString, right.myString);
@@ -81,10 +90,5 @@ namespace cs_mystring{
         return strcmp(leftOperand.myString, rightOperand.myString) == 0;
 
     }
-
-
-
-
-
 }
 
