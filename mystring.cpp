@@ -74,6 +74,20 @@ namespace cs_mystring{
 
 
 
+    std::istream& operator>>(std::istream& leftIS, mystring& rightOperand) {
+        char tempString[mystring::MAX_INPUT_SIZE + 1];
+        leftIS >> tempString;
+        delete [] rightOperand.myString;
+        rightOperand.myString = new char[strlen(tempString) + 1];
+        strcpy(rightOperand.myString, tempString);
+        return  leftIS;
+    }
+
+
+
+
+
+
     mystring mystring::operator=(const mystring& right) {
         if ( this != &right ) {
             delete [] myString;

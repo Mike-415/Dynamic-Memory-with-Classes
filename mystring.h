@@ -65,6 +65,7 @@
 namespace cs_mystring{
     class mystring {
     public:
+        static const int MAX_INPUT_SIZE = 127;
         mystring();
         mystring(const char *inMyString);
         mystring(const mystring& otherString);
@@ -74,6 +75,9 @@ namespace cs_mystring{
         char operator[](int index) const;
         char& operator[](int index);
         friend std::ostream& operator<<(std::ostream& leftOS, const mystring& rightOperand);
+
+        friend std::istream& operator>>(std::istream& leftIS, mystring& rightOperand);
+
         friend bool operator<(const mystring& leftOperand, const mystring& rightOperand);
         friend bool operator>(const mystring& leftOperand, const mystring& rightOperand);
         friend bool operator<=(const mystring& leftOperand, const mystring& rightOperand);
