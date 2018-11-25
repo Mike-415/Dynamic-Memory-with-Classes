@@ -2,36 +2,36 @@
     Name:       Michael Gonzalez
     Class:      cs110b
     Instructor: Dave Harden
-    File:       mystring.h
+    File:       MyString.h
 
-    The mystring class is used to make working with sequences of characters a little more
+    The MyString class is used to make working with sequences of characters a little more
     convenient and less error-prone than handling raw c-strings.
 
     The following functions are available:
 
-    mystring();
-      post: Constructs a mystring object with an empty string for the myString data member.
+    MyString();
+      post: Constructs a MyString object with an empty string for the myString data member.
 
 
-    mystring(const char *inMyString);
-      post: Constructs a mystring object with a c-string argument for the myString data member.
+    MyString(const char *inMyString);
+      post: Constructs a MyString object with a c-string argument for the myString data member.
 
-    mystring(const mystring& otherString);
-      post: Constructs a hard copy of a mystring object with another mystring object
+    MyString(const MyString& otherString);
+      post: Constructs a hard copy of a MyString object with another MyString object
             that provides the myString data member
 
-    ~mystring();
+    MyString();
       post: deallocates any object within the stack, usually when
             execution reaches the end of the function body.
 
     int length() const;
       post: returns the number of characters contained within the myString data member.
 
-    friend std::ostream& operator<<(std::ostream& leftOS, const mystring& rightOperand);
+    friend std::ostream& operator<<(std::ostream& leftOS, const MyString& rightOperand);
       post: returns an output stream that contains the myString data member.
 
-    mystring operator=(const mystring& right);
-      post: returns a hard copy of the right mystring object
+    MyString operator=(const MyString& right);
+      post: returns a hard copy of the right MyString object
 
 
     char operator[](int index) const;
@@ -41,49 +41,57 @@
       post: returns a reference to the left-side operand in order to assign
             it a value.
 
-    friend bool operator<(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator<(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is less than to the right operand.
 
-    friend bool operator>(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator>(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is greater than to the right operand.
 
-    friend bool operator<=(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator<=(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is less than or equal to the right operand.
 
-    friend bool operator>=(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator>=(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is greater than or equal to the right operand.
 
-    friend bool operator!=(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator!=(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is not equal to the right operand.
 
-    friend bool operator==(const mystring& leftOperand, const mystring& rightOperand);
+    friend bool operator==(const MyString& leftOperand, const MyString& rightOperand);
       post: Returns true if the left operand is equal to the right operand.
 */
 #include <iostream>
+#include <fstream>
 #ifndef MYSTRING_MYSTRING_H
 #define MYSTRING_MYSTRING_H
 namespace cs_mystring{
-    class mystring {
+    class MyString {
     public:
         static const int MAX_INPUT_SIZE = 127;
-        mystring();
-        mystring(const char *inMyString);
-        mystring(const mystring& otherString);
-        ~mystring();
+        MyString();
+        MyString(const char *inMyString);
+        MyString(const MyString& otherString);
+        ~MyString();
         int length() const;
-        mystring operator=(const mystring& right);
+
+        void read(std::ifstream& inStream, const char delimiter);
+
+        MyString operator=(const MyString& right);
         char operator[](int index) const;
         char& operator[](int index);
-        friend std::ostream& operator<<(std::ostream& leftOS, const mystring& rightOperand);
+        friend std::ostream& operator<<(std::ostream& leftOS, const MyString& rightOperand);
 
-        friend std::istream& operator>>(std::istream& leftIS, mystring& rightOperand);
+        friend std::istream& operator>>(std::istream& leftIS, MyString& rightOperand);
 
-        friend bool operator<(const mystring& leftOperand, const mystring& rightOperand);
-        friend bool operator>(const mystring& leftOperand, const mystring& rightOperand);
-        friend bool operator<=(const mystring& leftOperand, const mystring& rightOperand);
-        friend bool operator>=(const mystring& leftOperand, const mystring& rightOperand);
-        friend bool operator!=(const mystring& leftOperand, const mystring& rightOperand);
-        friend bool operator==(const mystring& leftOperand, const mystring& rightOperand);
+        friend bool operator<(const MyString& leftOperand, const MyString& rightOperand);
+        friend bool operator>(const MyString& leftOperand, const MyString& rightOperand);
+        friend bool operator<=(const MyString& leftOperand, const MyString& rightOperand);
+        friend bool operator>=(const MyString& leftOperand, const MyString& rightOperand);
+        friend bool operator!=(const MyString& leftOperand, const MyString& rightOperand);
+        friend bool operator==(const MyString& leftOperand, const MyString& rightOperand);
+
+        friend MyString operator+(const MyString& leftOperand, const MyString& rightOperand);
+        MyString operator+=(const MyString& rightOperand);
+
     private:
         char *myString;
     };
