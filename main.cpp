@@ -43,11 +43,6 @@ string boolString(bool convertMe);
 
 int main()
 {
-    MyString string1("Hello");
-    MyString string2(" World!");
-    MyString string3;
-    string3 = string1 + string2;
-    cout << "string3: " << string3 << endl;
     BasicTest();
     RelationTest();
     ConcatTest();

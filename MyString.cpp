@@ -10,7 +10,6 @@
    This data member stores c-strings and it's used
    in various operations such as relational operations.
  */
-
 #include "MyString.h"
 #include <cstring>
 #include <iostream>
@@ -65,8 +64,6 @@ namespace cs_mystring{
 
 
 
-    // Use the in.getline() function to do the reading of the input into a non-dynamic array,
-    // then use strcpy() to copy it into your data member.
     void MyString::read(std::ifstream& inStream, const char delimiter){
         char tempString[MyString::MAX_INPUT_SIZE + 1];
         inStream.getline(tempString, MyString::MAX_INPUT_SIZE, delimiter);
@@ -189,21 +186,19 @@ namespace cs_mystring{
     }
 
 
-    /*
-    Overload the + operator to do MyString concatenation.
-     The operator must be able to handle either MyString objects or C-strings on either side of the operator.
-     Be careful with the memory management here.
-     You'll have to allocate enough memory to hold the new MyString.
-     I suggest using strcpy() to get the left operand into the result MyString, and then strcat()
-     to append the right operand. Both strcpy() and strcat() should be used as if they are void,
-     even though they do have return values.
-     */
+
+
+
+
     MyString operator+(const MyString& leftOperand, const MyString& rightOperand){
         MyString combinedString;
         strcpy(combinedString.myString, leftOperand.myString);
         strcat(combinedString.myString, rightOperand.myString);
         return combinedString;
     }
+
+
+
 
 
 
